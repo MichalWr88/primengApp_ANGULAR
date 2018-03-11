@@ -1,0 +1,48 @@
+<p-tabView class="ui-g-12">
+    <p-tabPanel header="Order" rightIcon="fa-cart-arrow-down">
+        <div class="container">
+            <div class="box">
+                <!-- <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+                </form> -->
+                <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+                    <p-radioButton class="radio" *ngFor="let dish of dishes" name="dishes" [value]="dish.name" [label]="dish.name" [(ngModel)]="order.selectedDish">
+                    </p-radioButton>
+                </div>
+                <div class=" ui-grid-responsive ui-fluid">
+                    <p-dropdown name="delivery" [options]="typeOfCollection" [(ngModel)]="order.selectedColllection"></p-dropdown>
+                </div>
+                <div class="ui-g-offset-10">
+                    <p-button class="ui-grid-col-12" label="Clear"  styleClass="ui-button-danger ui-grid-col-12" ></p-button>
+                    <p-button class="ui-grid-col-12"  label="Order & Pay" [disabled]="true" styleClass="ui-button-success ui-grid-col-12" ></p-button>
+                </div>
+            </div>
+            <div class="box-valid">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam possimus delectus dolore eligendi necessitatibus modi
+                autem officiis molestias quod!
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </p-tabPanel>
+    <p-tabPanel header="Log In" rightIcon="fas fa-address-book">
+        Content 2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, cumque est. In iure officia corporis unde
+        molestias itaque eum pariatur aliquid quibusdam consequatur mollitia autem temporibus laudantium, incidunt doloremque
+        modi? Asperiores alias aut eligendi dolorum eos. Ab tempore perferendis voluptas odit recusandae nobis necessitatibus
+        hic ut molestiae cum quae sint, rem at laborum beatae harum doloremque sunt, quis explicabo? Ullam? Ex consequuntur
+        laboriosam similique soluta harum aut sit alias! Recusandae aperiam dignissimos, ipsam soluta fuga, temporibus mollitia
+        pariatur voluptates reprehenderit delectus dolorum, nihil necessitatibus? Sequi, vitae dolorem. Error, repellendus.
+        Ex!
+    </p-tabPanel>
+    <p-tabPanel header="Header 3">
+        Content 3
+    </p-tabPanel>
+</p-tabView>
