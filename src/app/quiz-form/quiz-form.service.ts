@@ -50,7 +50,7 @@ export class QuizFormService {
 
   order = {
     selectedDish: '',
-    delivery: { type: this.typeOfCollection[0] }
+    delivery: {}
   };
 
   // FUNCTIONS
