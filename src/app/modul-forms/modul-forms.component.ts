@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizFormService } from './quiz-form.service';
+import { ModulFormsService } from './modul-forms.service';
 import {
   Form,
   Validators,
@@ -8,11 +8,11 @@ import {
   FormBuilder
 } from '@angular/forms';
 @Component({
-  selector: 'app-quiz-form',
-  templateUrl: './quiz-form.component.html',
-  styleUrls: ['./quiz-form.component.css']
+  selector: 'app-modul-forms',
+  templateUrl: './modul-forms.component.html',
+  styleUrls: ['./modul-forms.component.css']
 })
-export class QuizFormComponent implements OnInit {
+export class ModulFormsComponent implements OnInit {
   extrats: Array<any>;
   dishes: Array<any>;
   order: any;
@@ -21,18 +21,19 @@ export class QuizFormComponent implements OnInit {
   typeOfCollection: Array<any>;
   orderForm: FormGroup;
   submitted: boolean;
-  constructor(private quizService: QuizFormService, private fb: FormBuilder) {
-    this.dishes = this.quizService.dishes;
-    this.order = this.quizService.order;
-    this.typeOfCollection = this.quizService.typeOfCollection;
-    this.deliveryDetails = this.quizService.deliveryDetails;
+  constructor(
+    private modulFormsService: ModulFormsService,
+    private fb: FormBuilder
+  ) {
+    this.dishes = this.modulFormsService.dishes;
+    this.order = this.modulFormsService.order;
+    this.typeOfCollection = this.modulFormsService.typeOfCollection;
+    this.deliveryDetails = this.modulFormsService.deliveryDetails;
   }
   onSubmit(form) {
     console.log(form);
   }
-  clearForm(){
-      
-  }
+  clearForm() {}
   get diagnostic() {
     return JSON.stringify(this.orderForm.value);
   }
@@ -40,8 +41,8 @@ export class QuizFormComponent implements OnInit {
     console.log(this.deliveryDetails);
     this.deliveryDetails.minDatevalue = new Date();
     this.deliveryDetails.dateDelivery = this.deliveryDetails.minDatevalue;
-    this.extrats = this.quizService.extrats;
-    this.order.delivery = this.quizService.typeOfCollection[0].value;
+    this.extrats = this.modulFormsService.extrats;
+    this.order.delivery = this.modulFormsService.typeOfCollection[0].value;
     this.orderForm = this.fb.group({
       dishType: new FormControl('', Validators.required),
       deliveryType: new FormControl('', Validators.required),

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class QuizFormService {
+export class ModulFormsService {
   dishes: Array<any> = [
     {
       name: 'Pizza',

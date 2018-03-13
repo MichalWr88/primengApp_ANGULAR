@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-nav-bar',
   template: `
@@ -10,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class NavBarComponent implements OnInit {
+ 
   constructor() {}
 
   ngOnInit() {}

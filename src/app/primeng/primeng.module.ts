@@ -7,7 +7,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import {InputMaskModule} from 'primeng/inputmask';
-
+import { TabMenuModule } from 'primeng/tabmenu';
+import { MenuItem } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { MenuModule } from 'primeng/menu';
+import { MessageModule } from 'primeng/message';
 import {InputTextModule} from 'primeng/inputtext';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -24,7 +28,11 @@ import { SpinnerModule } from 'primeng/spinner';
     KeyFilterModule,
     InputTextModule,
     CheckboxModule,
-    SpinnerModule
+    SpinnerModule,
+    TabMenuModule,
+    MessagesModule,
+    MessageModule,
+    MenuModule
   ],
   declarations: [],
   exports: [
@@ -37,7 +45,11 @@ import { SpinnerModule } from 'primeng/spinner';
     KeyFilterModule,
     InputTextModule,
     CheckboxModule,
-    SpinnerModule
+    SpinnerModule,
+    TabMenuModule,
+    MessagesModule,
+    MessageModule,
+    MenuModule
   ]
 })
 export class PrimengModule {}

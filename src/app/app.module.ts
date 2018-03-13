@@ -5,11 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {PrimengModule} from './primeng/primeng.module';
-import { QuizFormComponent } from './quiz-form/quiz-form.component';
-import { QuizFormService } from './quiz-form/quiz-form.service';
+import { ModulFormsComponent } from './modul-forms/modul-forms.component';
+import { ModulFormsService } from './modul-forms/modul-forms.service';
+import { ModulDataComponent } from './modul-data/modul-data.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, QuizFormComponent],
+  declarations: [AppComponent, NavBarComponent, ModulFormsComponent, ModulDataComponent],
   imports: [
     BrowserModule,
     PrimengModule,
@@ -17,7 +18,7 @@ import { QuizFormService } from './quiz-form/quiz-form.service';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [QuizFormService],
+  providers: [ModulFormsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

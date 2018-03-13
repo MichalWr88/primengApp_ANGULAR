@@ -1,0 +1,113 @@
+<p-tabView class=" ">
+    <!-- SIGN IN -->
+    <!-- <p-tabPanel header="Sign In" rightIcon="fas fa-address-book">
+        Content 2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, cumque est. In iure officia corporis unde
+        molestias itaque eum pariatur aliquid quibusdam consequatur mollitia autem
+    </p-tabPanel> -->
+    <!-- ORDER FORM -->
+    <p-tabPanel header="Order" rightIcon="fa-cart-arrow-down">
+        <div class="container-fluid">
+            <div class="container ui-card-header">
+                <div class="row">
+                    <i class="fa fa-shopping-cart col-1"></i>
+                    <h3 class="col-5 ui-card-title">Order food...lots of food</h3>
+                </div>
+            </div>
+            <form class="form__box col-12 row" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)">
+                <div class="col-6">
+                    <div class="col-12">
+                        <p-radioButton class="radio" *ngFor="let dish of dishes" name="dishes" [value]="dish.name" [label]="dish.name" formControlName="dishType">
+                        </p-radioButton>
+                    </div>
+                    <!-- delivery type -->
+                    <h4 class="container">Delivery type:</h4>
+                    <div class="container-fluid">
+                        <!-- list -->
+                        <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" [(ngModel)]="order.delivery"></p-dropdown>
+
+                        <div class="row" *ngIf="order.delivery.id !== 1">
+                            <h3 class="col-7">Delivery date:</h3>
+                            <p-calendar class="col-7" name="calendar" formControlName="deliveryDate" [(ngModel)]="deliveryDetails.dateDelivery" dateFormat="dd.mm.yy"
+                                [minDate]="deliveryDetails.minDateValue" [defaultDate]="deliveryDetails.minDateValue" [showIcon]="true"
+                                [showButtonBar]="true"></p-calendar>
+                            <div class="container">
+                                <h4>Adress:</h4>
+                                <span class="ui-float-label">
+                                    <input id="float-input-city" formControlName="city" type="text" pInputText>
+                                    <label for="float-input-city">City</label>
+                                </span>
+                                <span class="ui-float-label">
+                                    <input id="float-input" formControlName="street" type="text" pInputText>
+                                    <label for="float-input">Street name</label>
+                                </span>
+                                <span class="ui-float-label">
+                                    <p-inputMask name="pastcode" formControlName="postCode" mask="99-9999"></p-inputMask>
+                                    <label for="float-input">Postcode</label>
+                                </span>
+                                <span class="ui-float-label">
+                                    <input id="float-input" type="text" formControlName="number" pInputText>
+                                    <label for="float-input">number</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <!-- TYPE OF DISHES -->
+                    <div class="  ">
+                        <span *ngFor="let dish of dishes">
+                            <p-dropdown *ngIf="dish.name == order.selectedDish" [name]="dish.name" [options]="dish.types" formControlName="typeDish"></p-dropdown>
+                        </span>
+                    </div>
+                    <!-- dish extras -->
+                    <div class="  ">
+                        <p>Extras:</p>
+                        <div class=" " [ngSwitch]="order.selectedDish">
+
+
+                            <div>
+                                <div class="row" dish="dish" *ngFor="let type of extrats">
+                                    <p-checkbox class="col-5"  [label]="type.label" [(ngModel)]="type.checked" formControlName="{{type.label}}"></p-checkbox>
+                                    <p-spinner class="col-4" *ngIf="type.checked.length"  formControlName="{{'C'+type.label}}" [(ngModel)]="type.count"
+                                        val="countExtras" [min]="1" [max]="100"></p-spinner>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- BUTTONS -->
+                    <div class="col-12">
+                        <div class="row align-items-end justify-content-center">
+                            <button class=" col-5 offset-7 ui-button-danger" pButton type="button" label="Clear"></button>
+
+                        </div>
+                        <div class="row align-items-end">
+
+                            <button class=" col-5 offset-7 ui-button-success" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid"></button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="box-valid ui-g-4">
+                {{diagnostic}}
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </p-tabPanel>
+
+    <p-tabPanel header="questionnaire " rightIcon="fas fa-edit">
+        Content 3
+    </p-tabPanel>
+</p-tabView>
