@@ -13,27 +13,21 @@ export class QuizFormService {
     },
     {
       name: 'Sushi',
-      types: this.cDropDownElem(['uramaki', 'fitomaki', 'weramaki']),
-      extrats: this.cObjExtras([
-        'wasabi',
-        'sake',
-        'option3',
-        'option4',
-        'extra rise'
-      ])
+      types: this.cDropDownElem(['uramaki', 'fitomaki', 'weramaki'])
     },
     {
       name: 'Pasta',
-      types: this.cDropDownElem(['tuti dimare', 'Formaggi', 'Spagetti']),
-      extrats: this.cObjExtras([
-        'extra sos',
-        'sake',
-        'option3',
-        'option4',
-        'extra chees'
-      ])
+      types: this.cDropDownElem(['tuti dimare', 'Formaggi', 'Spagetti'])
     }
   ];
+
+  extrats: Array<any> = this.cObjExtras([
+    'Sake',
+    'Coke',
+    'Ketchup',
+    'Juice',
+    'Water'
+  ]);
 
   typeOfCollection: Array<any> = this.cDropDownElem([
     'i pick it up',
@@ -73,7 +67,7 @@ export class QuizFormService {
       const tempObj = {
         label: element,
         checked: false,
-        count: 1
+        count: 1,
       };
       tempArr.push(tempObj);
     });

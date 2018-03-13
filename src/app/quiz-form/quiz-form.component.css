@@ -33,4 +33,13 @@ div.ui-tabview-panels {
 .box-valid{
     /* padding:10px;
     flex:1 */
+    height:300px;
+}
+.ui-float-label{
+    margin:20px 0;
+}
+.box-extras{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }

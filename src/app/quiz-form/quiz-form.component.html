@@ -17,22 +17,66 @@
                 <h4>Delivery type:</h4>
                 <div class=" ui-grid-responsive ui-fluid">
                     <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" [(ngModel)]="order.delivery"></p-dropdown>
-                    <div class="ui-inputgroup" *ngIf="order.delivery.id !== 1">
-                        <h3>Delivery date:</h3>
-                        <p-calendar name="calendar" formControlName="deliveryDate" [(ngModel)]="deliveryDetails.dateDelivery" dateFormat="dd.mm.yy" [minDate]="deliveryDetails.minDateValue" [defaultDate]="deliveryDetails.minDateValue"
-                            [showIcon]="true" [showButtonBar]="true"></p-calendar>
-                        
+
+                    <div class="ui-inputgroup ui-g-12" *ngIf="order.delivery.id !== 1">
+                        <h3 class="ui-g-6">Delivery date:</h3>
+                        <p-calendar class="ui-g-6" name="calendar" formControlName="deliveryDate" [(ngModel)]="deliveryDetails.dateDelivery" dateFormat="dd.mm.yy"
+                            [minDate]="deliveryDetails.minDateValue" [defaultDate]="deliveryDetails.minDateValue" [showIcon]="true"
+                            [showButtonBar]="true"></p-calendar>
+                        <div class=" ui-g-12">
+                            <h4>Adress:</h4>
+                            <span class="ui-float-label">
+                                <input id="float-input-city" formControlName="city" type="text" pInputText>
+                                <label for="float-input-city">City</label>
+                            </span>
+                            <span class="ui-float-label">
+                                <input id="float-input" formControlName="street" type="text" pInputText>
+                                <label for="float-input">Street name</label>
+                            </span>
+                            <span class="ui-float-label">
+                                <p-inputMask name="pastcode" formControlName="postCode" mask="99-9999"></p-inputMask>
+                                <label for="float-input">Postcode</label>
+                            </span>
+                            <span class="ui-float-label">
+                                <input id="float-input-number" type="text" formControlName="number" pInputText>
+                                <label for="float-input-number">number</label>
+                            </span>
+                        </div>
                     </div>
                 </div>
+                <!-- TYPE OF DISHES -->
+                <div class=" ui-g-12">
+                    <span *ngFor="let dish of dishes">
+                        <p-dropdown *ngIf="dish.name == order.selectedDish" [name]="dish.name" [options]="dish.types" formControlName="typeDish"></p-dropdown>
+                    </span>
+                </div>
+                <!-- BUTTONS -->
                 <div class="ui-g-offset-10">
                     <button class="ui-grid-col-12 ui-button-danger" pButton type="button" styleClass="ui-button-danger ui-grid-col-12" label="Clear"></button>
 
                     <button class="ui-grid-col-12" pButton type="submit" styleClass="ui-button-success ui-grid-col-12" label="Order & Pay" [disabled]="!orderForm.valid"></button>
                 </div>
+                <!-- dish extras -->
+                <div class=" ui-g-12">
+                    <p>Extras:</p>
+                    <div class="ui-fluid" [ngSwitch]="order.selectedDish">
+
+
+                        <div>
+                            <div class="box-extras" dish="dish" *ngFor="let type of extrats">
+                                <p-checkbox class="ui-g-3"  class="ui-g-4" [label]="type.label" [(ngModel)]="type.checked" formControlName="{{type.label}}"></p-checkbox>
+                                <p-spinner class="ui-g-2" *ngIf="type.checked.length" size="30" formControlName="{{'C'+type.label}}" [(ngModel)]="type.count"
+                                    val="countExtras" [min]="1" [max]="100"></p-spinner>
+                                <p>{{type | json}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </form>
-            <div class="box-valid ui-g-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam possimus delectus dolore eligendi necessitatibus modi
-                autem officiis molestias quod!
+            <div class="box-valid ui-g-4">
+                {{diagnostic}}
+
             </div>
         </div>
 
