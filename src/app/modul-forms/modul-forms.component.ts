@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModulFormsService } from './modul-forms.service';
 import {
-  Form,
   Validators,
   FormControl,
   FormGroup,
@@ -33,10 +32,17 @@ export class ModulFormsComponent implements OnInit {
   onSubmit(form) {
     console.log(form);
   }
-  clearForm() {}
+  clearForm() {
+    this.orderForm.reset({
+      dishType: '',
+      deliveryType: { id: 1, name: 'i pick it up' }
+    });
+  }
+
   get diagnostic() {
     return JSON.stringify(this.orderForm.value);
   }
+  checkDelivery(obj) {}
   ngOnInit() {
     console.log(this.deliveryDetails);
     this.deliveryDetails.minDatevalue = new Date();
@@ -47,12 +53,18 @@ export class ModulFormsComponent implements OnInit {
       dishType: new FormControl('', Validators.required),
       deliveryType: new FormControl('', Validators.required),
       deliveryDate: new FormControl(''),
-      city: new FormControl(''),
-      street: new FormControl(''),
+      city: new FormControl(
+        '',
+        Validators.compose([Validators.minLength(3), Validators.required])
+      ),
+      street: new FormControl(
+        '',
+        Validators.compose([Validators.minLength(3), Validators.required])
+      ),
       postCode: new FormControl(''),
       number: new FormControl(''),
       typeDish: new FormControl('', Validators.required),
-      Sake: new FormControl(''),
+      Sake: new FormControl(),
       Coke: new FormControl(''),
       Ketchup: new FormControl(''),
       Juice: new FormControl(''),
@@ -63,5 +75,6 @@ export class ModulFormsComponent implements OnInit {
       CJuice: new FormControl(''),
       CWater: new FormControl('')
     });
+    console.log(this.orderForm);
   }
 }
