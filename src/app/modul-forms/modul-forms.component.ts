@@ -61,8 +61,8 @@ export class ModulFormsComponent implements OnInit {
         '',
         Validators.compose([Validators.minLength(3), Validators.required])
       ),
-      postCode: new FormControl(''),
-      number: new FormControl(''),
+      postCode: new FormControl('', Validators.required),
+      number: new FormControl('', Validators.required),
       typeDish: new FormControl('', Validators.required),
       Sake: new FormControl(),
       Coke: new FormControl(''),
