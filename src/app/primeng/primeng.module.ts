@@ -8,7 +8,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import {InputMaskModule} from 'primeng/inputmask';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { MenuItem } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MenuModule } from 'primeng/menu';
 import { MessageModule } from 'primeng/message';
@@ -16,6 +15,12 @@ import {InputTextModule} from 'primeng/inputtext';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SpinnerModule } from 'primeng/spinner';
+import { CardModule } from 'primeng/card';
+import { TooltipModule } from 'primeng/tooltip';
+import { DataListModule } from 'primeng/datalist';
+import { DialogModule } from 'primeng/dialog';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +37,11 @@ import { SpinnerModule } from 'primeng/spinner';
     TabMenuModule,
     MessagesModule,
     MessageModule,
-    MenuModule
+    MenuModule,
+    CardModule,
+    TooltipModule,
+    DataListModule,
+    DialogModule
   ],
   declarations: [],
   exports: [
@@ -49,7 +58,11 @@ import { SpinnerModule } from 'primeng/spinner';
     TabMenuModule,
     MessagesModule,
     MessageModule,
-    MenuModule
+    MenuModule,
+    CardModule,
+    TooltipModule,
+    DataListModule,
+    DialogModule
   ]
 })
 export class PrimengModule {}

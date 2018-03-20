@@ -32,7 +32,9 @@ div.ui-tabview-panels {
     height:300px;
 }
 .ui-float-label{
-    margin:20px 0;
+    position:relative;
+    margin:15px;
+    padding:2px;
 }
 .box-extras{
     display:flex;
@@ -44,4 +46,14 @@ margin:0;
 }
 .row__exctras{
     height:30px;
+}
+p-message /deep/  .ui-message-text{
+font-size:10px;
+}
+p-message /deep/ .ui-message{
+padding: 5px;
+position:absolute;
+top:0;
+right:-30px;
+width:50%;
 }

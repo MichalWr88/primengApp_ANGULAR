@@ -1,9 +1,5 @@
 <p-tabView class=" ">
-    <!-- SIGN IN -->
-    <!-- <p-tabPanel header="Sign In" rightIcon="fas fa-address-book">
-        Content 2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, cumque est. In iure officia corporis unde
-        molestias itaque eum pariatur aliquid quibusdam consequatur mollitia autem
-    </p-tabPanel> -->
+
     <!-- ORDER FORM -->
     <p-tabPanel header="Order" rightIcon="fa-cart-arrow-down">
         <div class="container-fluid">
@@ -16,7 +12,8 @@
             <form class="form__box col-12 row" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)">
                 <div class="col-6">
                     <div class="col-12">
-                        <p-radioButton class="radio" *ngFor="let dish of dishes" [value]="dish.name" [label]="dish.name" [(ngModel)]="order.selectedDish" formControlName="dishType">
+                        <p-radioButton class="radio" *ngFor="let dish of dishes" [value]="dish.name" [label]="dish.name" name="dishN"
+                            formControlName="dishType">
                         </p-radioButton>
                     </div>
                     <!-- delivery type -->
@@ -24,11 +21,14 @@
                     <div class="container-fluid">
                         <!-- list delivery -->
                         <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" [(ngModel)]="order.delivery"></p-dropdown>
-<!-- Calendar -->
+                        <!-- Calendar -->
                         <div class="row" *ngIf="order.delivery.id !== 1">
                             <h3 class="col-7">Delivery date:</h3>
-                            <p-calendar  class="col-7" name="calendar" formControlName="deliveryDate" [(ngModel)]="deliveryDetails.dateDelivery" dateFormat="dd.mm.yy"
-                                [minDate]="deliveryDetails.minDateValue" [defaultDate]="deliveryDetails.minDateValue" [showIcon]="true"
+                            <p-calendar class="col-7" name="calendar" formControlName="deliveryDate"
+                             [(ngModel)]="deliveryDetails.dateDelivery"
+                              dateFormat="dd.mm.yy"
+                                [minDate]="deliveryDetails.minDateValue"
+                                 [defaultDate]="deliveryDetails.dateDelivery" [showIcon]="true"
                                 [showButtonBar]="true"></p-calendar>
                             <div class="container">
                                 <!-- Address -->
@@ -36,16 +36,17 @@
                                 <span class="ui-float-label">
                                     <input id="float-input-city" formControlName="city" type="text" pInputText>
                                     <label for="float-input-city">City</label>
+                                    <p-message *ngIf="orderForm.controls.city.touched === true && orderForm.controls.city.invalid === true " severity="error"
+                                        text="Wpisz min 3 znaki"></p-message>
                                 </span>
-                                <p-message *ngIf="orderForm.controls.city.touched === true && orderForm.controls.city.invalid === true " severity="error" text="Wpisz min 3 znaki"></p-message>
                                 <div>
 
                                     <span class="ui-float-label">
                                         <input id="float-input" formControlName="street" type="text" pInputText>
                                         <label for="float-input">Street name</label>
+                                        <p-message *ngIf="orderForm.controls.street.touched === true && orderForm.controls.street.invalid === true " severity="error"
+                                            text="Wpisz min 3 znaki"></p-message>
                                     </span>
-                                    <p-message *ngIf="orderForm.controls.street.touched === true && orderForm.controls.street.invalid === true " severity="error"
-                                        text="Wpisz min 3 znaki"></p-message>
                                 </div>
 
                                 <span class="ui-float-label">
@@ -64,32 +65,32 @@
                     <!-- TYPE OF DISHES -->
                     <div class=" col-12 ">
                         <span *ngFor="let dish of dishes">
-                            <p-dropdown *ngIf="order.selectedDish == dish.name" [name]="dish.name" [options]="dish.types" formControlName="typeDish"></p-dropdown>
+                            <p-dropdown *ngIf="orderForm.controls.dishType.value == dish.name" [name]="dish.name" [options]="dish.types" formControlName="typeDish"></p-dropdown>
                         </span>
                     </div>
                     <!-- dish extras -->
                     <div class=" col-12 ">
                         <p>Extras:</p>
-                        
-                          
-                                <div class="row row__exctras" dish="dish" *ngFor="let type of extrats">
-                                    <p-checkbox class="col-5"  [label]="type.label"  [(ngModel)]="type.checked" formControlName="{{type.label}}"></p-checkbox>
-                                    <p-spinner class="col-4" *ngIf="type.checked.length"  formControlName="{{'C'+type.label}}" [(ngModel)]="type.count"
-                                        val="countExtras" [min]="1" [max]="100"></p-spinner>
-                                </div>
-                           
 
-                        
+
+                        <div class="row row__exctras" dish="dish" *ngFor="let type of extrats">
+                            <p-checkbox class="col-5" [label]="type.label" [(ngModel)]="type.checked" formControlName="{{type.label}}"></p-checkbox>
+                            <p-spinner class="col-4" *ngIf="type.checked.length" formControlName="{{'C'+type.label}}" [(ngModel)]="type.count" val="countExtras"
+                                [min]="1" [max]="100"></p-spinner>
+                        </div>
+
+
+
                     </div>
                     <!-- BUTTONS -->
                     <div class="col-12 ui-card-footer">
                         <div class="row align-items-end justify-content-center">
-                            <button class=" col-5 offset-7 ui-button-danger" pButton type="button" label="Clear" (click)="clearForm()"></button>
+                            <button class=" col-5 offset-7 ui-button-danger" pButton type="button" label="Clear" (click)="clearForm()" pTooltip="Clear your order" tooltipPosition="top"></button>
 
                         </div>
                         <div class="row ">
 
-                            <button class=" col-5 offset-7 ui-button-success" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid"></button>
+                            <button class=" col-5 offset-7 ui-button-success" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid" pTooltip="send your order" tooltipPosition="bottom"></button>
 
                         </div>
                     </div>
@@ -101,20 +102,51 @@
 
             </div>
         </div>
+    </p-tabPanel>
+    <!-- SIGN IN -->
+    <p-tabPanel header="Sign In" rightIcon="fas fa-address-book">
+        <div class="container-fluid">
+            <p-card>
+                <p-header class="ui-card-header">
+                    <h4 class="offset-1">Sign up Form</h4>
+                </p-header>
+                <form novalidate class="container">
+                    <div class="ui-inputgroup row">
+                        <span class="ui-float-label col-5">
+                            <input id="float-input" type="text" pInputText>
+                            <label for="float-input">First Name</label>
+                        </span>
+                        <span class="ui-float-label col-5">
+                            <input id="float-input" type="text" pInputText>
+                            <label for="float-input">Last Name</label>
+                        </span>
+                    </div>
+                    <!-- email phone -->
+                    <div class="ui-inputgroup row">
+                        <span class="ui-float-label col-5">
+                            <input class="col-12" id="float-input" type="text" pInputText>
+                            <label for="float-input">Email</label>
+                        </span>
+                        <span class="ui-float-label col-5">
+                            <input class="col-12" id="float-input" type="text" pInputText>
+                            <label for="float-input">Phone</label>
+                        </span>
+                    </div>
+                    <div class="ui-inputgroup row">
+                        <span class="ui-float-label col-5">
+                            <input class="col-12" id="float-input" type="text" pInputText>
+                            <label for="float-input">Organizations</label>
+                        </span>
 
-
-
-
-
-
-
-
-
-
-
+                    </div>
+                    <div class="ui-inputgroup row"></div>
+                    <div class="ui-inputgroup row"></div>
+                </form>
+            </p-card>
+        </div>
     </p-tabPanel>
 
-    <p-tabPanel header="questionnaire " rightIcon="fas fa-edit">
-        Content 3
+    <p-tabPanel header="posts " rightIcon="fas fa-edit">
+       <app-modul-data></app-modul-data>
     </p-tabPanel>
 </p-tabView>

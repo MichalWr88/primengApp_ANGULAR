@@ -20,6 +20,7 @@ export class ModulFormsComponent implements OnInit {
   typeOfCollection: Array<any>;
   orderForm: FormGroup;
   submitted: boolean;
+  formattedMessage: string;
   constructor(
     private modulFormsService: ModulFormsService,
     private fb: FormBuilder
@@ -27,26 +28,13 @@ export class ModulFormsComponent implements OnInit {
     this.dishes = this.modulFormsService.dishes;
     this.order = this.modulFormsService.order;
     this.typeOfCollection = this.modulFormsService.typeOfCollection;
-    this.deliveryDetails = this.modulFormsService.deliveryDetails;
-  }
-  onSubmit(form) {
-    console.log(form);
-  }
-  clearForm() {
-    this.orderForm.reset({
-      dishType: '',
-      deliveryType: { id: 1, name: 'i pick it up' }
-    });
   }
 
-  get diagnostic() {
-    return JSON.stringify(this.orderForm.value);
-  }
-  checkDelivery(obj) {}
   ngOnInit() {
+    this.deliveryDetails = this.modulFormsService.deliveryDetails;
+
+    this.deliveryDetails.dateDelivery = new Date();
     console.log(this.deliveryDetails);
-    this.deliveryDetails.minDatevalue = new Date();
-    this.deliveryDetails.dateDelivery = this.deliveryDetails.minDatevalue;
     this.extrats = this.modulFormsService.extrats;
     this.order.delivery = this.modulFormsService.typeOfCollection[0].value;
     this.orderForm = this.fb.group({
@@ -76,5 +64,29 @@ export class ModulFormsComponent implements OnInit {
       CWater: new FormControl('')
     });
     console.log(this.orderForm);
+    this.watchChangesForm();
+  }
+
+  onSubmit(form) {
+    console.log(form);
+  }
+  clearForm() {
+    this.orderForm.reset({
+      dishType: '',
+      deliveryType: { id: 1, name: 'i pick it up' }
+    });
+  }
+
+  watchChangesForm() {
+    this.orderForm.get('dishType').valueChanges.subscribe(val => {
+      console.log(val);
+    });
+    this.orderForm.get('typeDish').valueChanges.subscribe(val => {
+      console.log(val);
+    });
+  }
+
+  get diagnostic() {
+    return JSON.stringify(this.orderForm.value);
   }
 }

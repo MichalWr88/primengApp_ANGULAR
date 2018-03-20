@@ -1,3 +1,33 @@
-<p>
-  modul-data works!
-</p>
+<p-dialog header=" User ID:" [(visible)]="display" [contentStyle]="{'max-width':'500px'}" dismissableMask="false">
+    <p-header >
+         {{postShow.userId}}
+    </p-header>
+        {{postShow.body}}
+    <p-footer>
+        {{postShow.title}}
+    </p-footer>
+</p-dialog>
+
+
+<p-dataList [value]="posts" [paginator]="true" [rows]="10">
+    <p-header>List of Posts</p-header>
+    <ng-template let-post pTemplate="item">
+        <div class="container-fluid">
+            <div class="row posts__row" (click)="showDialog(post)">
+                <div class="col-2 row">
+                    <p class="col-8">User ID </p>
+                    <p class="col-4 ui-card-header">{{post.userId}}</p>
+
+                </div>
+                <div class="col-5">
+                    {{post.title}}
+                </div>
+                <div class="col-5">
+                    {{post.body}}
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dataList>
+<!-- <button pButton type="button" label="Click"></button> -->
+<div>works data</div>

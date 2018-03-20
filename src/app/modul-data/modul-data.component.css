@@ -1,0 +1,12 @@
+.posts__row{
+    transition: ease-in-out 200ms;
+    padding:10px 0;
+    border:1px solid black;
+    cursor:pointer;
+}
+.posts__row:hover{
+   background-color: hotpink;
+}
+.ui-card-header{
+    font-weight: bold;
+}

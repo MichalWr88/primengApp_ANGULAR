@@ -38,7 +38,7 @@ export class ModulFormsService {
     StreetName: '',
     PostCode: '',
     Number: '',
-    minDateValue: '',
+    minDateValue: new Date(),
     dateDelivery: ''
   };
 
