@@ -14,9 +14,9 @@ export class ModulDataService {
       .toPromise()
       .then(res => res.json())
       .then(data => {
-          console.log(data);
-          
-          return data;
+        console.log(data);
+
+        return data;
       });
   }
 }
