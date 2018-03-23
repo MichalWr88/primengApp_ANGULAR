@@ -19,7 +19,7 @@ import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { DataListModule } from 'primeng/datalist';
 import { DialogModule } from 'primeng/dialog';
-
+import { DataTableModule } from 'primeng/datatable';
 
 @NgModule({
   imports: [
@@ -41,7 +41,8 @@ import { DialogModule } from 'primeng/dialog';
     CardModule,
     TooltipModule,
     DataListModule,
-    DialogModule
+    DialogModule,
+    DataTableModule
   ],
   declarations: [],
   exports: [
@@ -62,7 +63,8 @@ import { DialogModule } from 'primeng/dialog';
     CardModule,
     TooltipModule,
     DataListModule,
-    DialogModule
+    DialogModule,
+    DataTableModule
   ]
 })
 export class PrimengModule {}

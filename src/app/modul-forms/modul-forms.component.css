@@ -51,9 +51,10 @@ p-message /deep/  .ui-message-text{
 font-size:10px;
 }
 p-message /deep/ .ui-message{
+    
 padding: 5px;
 position:absolute;
 top:0;
-right:-30px;
+right:-80px;
 width:50%;
 }

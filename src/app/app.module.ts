@@ -14,6 +14,7 @@ import {ModulMapModule} from './modul-map/modul-map.module';
 import { ModulChartsModule } from './modul-charts/modul-charts.module';
 
 
+
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
   imports: [
