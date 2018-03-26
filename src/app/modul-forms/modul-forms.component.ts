@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ModulFormsService } from './modul-forms.service';
 import { OrderTableComponent } from './order-table/order-table.component';
 import { PrimengModule } from '../primeng/primeng.module';
@@ -8,6 +8,7 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-modul-forms',
@@ -17,7 +18,11 @@ import {
 export class ModulFormsComponent implements OnInit {
   extrats: Array<any>;
   dishes: Array<any>;
-  order: any;
+  order: any = {};
+
+@Output()
+  orders: Array<any> = [];
+
   deliveryType: String = '';
   deliveryDetails: any;
   typeOfCollection: Array<any>;
@@ -29,7 +34,6 @@ export class ModulFormsComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.dishes = this.modulFormsService.dishes;
-    this.order = this.modulFormsService.order;
     this.typeOfCollection = this.modulFormsService.typeOfCollection;
   }
 
@@ -38,57 +42,57 @@ export class ModulFormsComponent implements OnInit {
 
     this.deliveryDetails.dateDelivery = new Date();
     this.extrats = this.modulFormsService.extrats;
-    this.order.delivery = this.modulFormsService.typeOfCollection[0].value;
 
-    this.orderForm = this.fb.group({
-      dishType: new FormControl('', Validators.required),
-      deliveryType: new FormControl('', Validators.required),
-      deliveryDate: new FormControl(this.deliveryDetails.minDateValue),
-      typeDish: new FormControl('', Validators.required),
-
-      deliveryPlace: this.fb.group({
-        city: new FormControl(''),
-        street: new FormControl(''),
-        number: new FormControl(),
-        postCode: new FormControl('')
-      }),
-      Sake: this.fb.group({
-        check: new FormControl(false),
-        count: new FormControl()
-      }),
-      Coke: this.fb.group({
-        check: new FormControl(false),
-        count: new FormControl()
-      }),
-      Ketchup: this.fb.group({
-        check: new FormControl(false),
-        count: new FormControl()
-      }),
-      Juice: this.fb.group({
-        check: new FormControl(false),
-        count: new FormControl()
-      }),
-      Water: this.fb.group({
-        check: new FormControl(false),
-        count: new FormControl()
-      })
-    });
-    // this.orderForm.get('deliveryPlace').markAsTouched();
-    console.log(this.orderForm);
+    this.orderForm = this.generateorderForm();
     this.watchChangesForm();
   }
 
   onSubmit(form) {
-    console.log(form);
+    this.order = form;
+    this.orders.push(this.order)
+    console.log(this.orders);
   }
   clearForm() {
     this.orderForm.reset({
       dishType: '',
       deliveryType: { id: 1, name: 'i pick it up' }
     });
-    // this.orderForm.controls.Sake.get('count').disable();
   }
+  generateorderForm() {
+    return this.fb.group({
+      dishType: new FormControl('', Validators.required),
+      deliveryType: new FormControl('i pick it up', Validators.required),
+      deliveryDate: new FormControl(this.deliveryDetails.minDateValue),
+      typeDish: new FormControl('', Validators.required),
 
+      deliveryPlace: this.fb.group({
+        city: '',
+        street: '',
+        number: '',
+        postCode: ''
+      }),
+      Sake: this.fb.group({
+        check: false,
+        count: ''
+      }),
+      Coke: this.fb.group({
+        check: false,
+        count: ''
+      }),
+      Ketchup: this.fb.group({
+        check: false,
+        count: ''
+      }),
+      Juice: this.fb.group({
+        check: false,
+        count: ''
+      }),
+      Water: this.fb.group({
+        check: false,
+        count: ''
+      })
+    });
+  }
   watchChangesForm() {
     this.orderForm.controls.Sake.get('count').disable();
     this.orderForm.get('dishType').valueChanges.subscribe(val => {
@@ -153,8 +157,8 @@ export class ModulFormsComponent implements OnInit {
       .get(text)
       .get('check')
       .valueChanges.subscribe(val => {
-          console.log(val);
-          
+        console.log(val);
+
         const count = parent.get('count');
         if (val === true) {
           count.enable();

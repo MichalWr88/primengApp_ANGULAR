@@ -1,22 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-// import { Observable, Subject } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ModulDataService {
-  posts: Array<any> = [];
-  constructor(private http: Http) {}
 
-  getPosts() {
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    return this.http
-      .get(url)
-      .toPromise()
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
+  constructor(private http: HttpClient) {}
 
-        return data;
-      });
+  getPosts(url) {
+    return this.http.get(url);
   }
 }

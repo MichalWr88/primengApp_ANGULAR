@@ -16,13 +16,13 @@
                         </p-radioButton>
                     </div>
                     <!-- delivery type -->
-                    <h4 class="container">Delivery type:</h4>
-                    <div class="container-fluid">
+                    <h4 class="container" *ngIf="orderForm.controls.dishType.value !== ''">Delivery type:</h4>
+                    <div class="container-fluid" *ngIf="orderForm.controls.dishType.value !== ''">
                         <!-- list delivery -->
-                        <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" [(ngModel)]="order.delivery"></p-dropdown>
+                        <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" ></p-dropdown>
 
                         <!-- Calendar -->
-                        <div class="row" *ngIf="order.delivery.id !== 1">
+                        <div class="row" *ngIf="orderForm.controls.deliveryType.value !== 'i pick it up'">
 
                             <h3 class="col-7">Delivery date:</h3>
                             <p-calendar class="col-7" name="calendar" formControlName="deliveryDate" dateFormat="dd.mm.yy" [minDate]="deliveryDetails.minDateValue"
@@ -71,7 +71,7 @@
                         </span>
                     </div>
                     <!-- dish extras -->
-                    <div class="col-12">
+                    <div class="col-12" *ngIf="orderForm.controls.dishType.value !== ''">
                         <p class="col-12">Extras:</p>
 
 
@@ -84,7 +84,7 @@
                     </div>
                     <!-- BUTTONS -->
                     <div class="col-12 ui-card-footer">
-                        <div class="row align-items-end justify-content-center">
+                        <div class="row align-items-end justify-content-center" *ngIf="orderForm.controls.dishType.value !== ''">
                             <button class=" col-5 offset-7 ui-button-danger" pButton type="button" label="Clear" (click)="clearForm()" pTooltip="Clear your order"
                                 tooltipPosition="top"></button>
 
@@ -92,7 +92,7 @@
                         <div class="row ">
 
                             <button class=" col-5 offset-7 ui-button-success" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid"
-                                pTooltip="send your order" tooltipPosition="bottom"></button>
+                                pTooltip="send your order" tooltipPosition="bottom"  ></button>
 
                         </div>
                     </div>
@@ -101,7 +101,7 @@
             <div class="box-valid ui-g-row">
                 <h3 class="ui-g-6">Debugowanie formularza</h3>
                 {{diagnostic}}
-                <app-order-table class="ui-g-12"></app-order-table>
+                <app-order-table  class="ui-g-12" [orders]="orders"></app-order-table>
 
             </div>
         </div>

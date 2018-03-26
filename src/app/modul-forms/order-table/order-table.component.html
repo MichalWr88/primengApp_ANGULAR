@@ -1,11 +1,9 @@
-<p>
-  order-table works!
-</p>
 <!-- <button pButton type="button" label="Click"></button> -->
-<p-dataTable [value]="orders" >
+<p-dataTable [value]="orders" lazy="true" [immutable]=false>
     <p-header>List of Orders</p-header>
-    <p-column field="dish" header="Dish"></p-column>
+    <p-column field="dishType" header="Dish"></p-column>
     <p-column field="type" header="Type"></p-column>
     <p-column field="delivery.type" header="Delivery"></p-column>
     <p-column field="extras.type" header="Extras"></p-column>
 </p-dataTable>
+{{orders | json}}

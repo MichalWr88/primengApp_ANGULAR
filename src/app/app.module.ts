@@ -12,11 +12,12 @@ import {ModulDataModule} from './modul-data/modul-data.module';
 import {ModulHomeModule} from './modul-home/modul-home.module';
 import {ModulMapModule} from './modul-map/modul-map.module';
 import { ModulChartsModule } from './modul-charts/modul-charts.module';
+import { ErrorMesssageComponent } from './error-messsage.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent],
+  declarations: [AppComponent, NavBarComponent, ErrorMesssageComponent],
   imports: [
     BrowserModule,
     PrimengModule,

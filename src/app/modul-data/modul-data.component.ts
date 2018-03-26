@@ -7,17 +7,20 @@ import { ModulDataService } from './modul-data.service';
   styleUrls: ['./modul-data.component.css']
 })
 export class ModulDataComponent implements OnInit {
-  posts: Array<any> = [];
-postShow: any = {};
+  posts: any ;
+  postShow: any = {};
   display: Boolean = false;
-
+  postsUrl = 'https://jsonplaceholder.typicode.com/posts';
   showDialog(post) {
-      this.postShow = post;
+    this.postShow = post;
     this.display = true;
   }
   constructor(private mDS: ModulDataService) {}
 
   ngOnInit() {
-    this.mDS.getPosts().then(posts => (this.posts = posts));
+    this.mDS.getPosts(this.postsUrl).subscribe(data => {
+      this.posts = data;
+      return data;
+    });
   }
 }
