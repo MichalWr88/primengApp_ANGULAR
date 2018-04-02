@@ -7,17 +7,18 @@ export class ModulFormsService {
       name: 'Pizza',
       types: this.cDropDownElem([
         'Margarita',
-        'Na grubym  z pieczarkami',
-        'wege'
+        'Neapolitan',
+        'Chicago ',
+        'Sicilian'
       ])
     },
     {
       name: 'Sushi',
-      types: this.cDropDownElem(['uramaki', 'fitomaki', 'weramaki'])
+      types: this.cDropDownElem(['Uramaki', 'Fitomaki', 'Weramaki'])
     },
     {
       name: 'Pasta',
-      types: this.cDropDownElem(['tuti dimare', 'Formaggi', 'Spagetti'])
+      types: this.cDropDownElem(['Farfalle', 'Shells', 'Spagetti'])
     }
   ];
 
@@ -30,7 +31,7 @@ export class ModulFormsService {
   ]);
 
   typeOfCollection: Array<any> = this.cDropDownElem([
-    'i pick it up',
+    'I pick it up',
     'Delivery'
   ]);
   deliveryDetails: any = {

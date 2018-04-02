@@ -20,7 +20,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DataListModule } from 'primeng/datalist';
 import { DialogModule } from 'primeng/dialog';
 import { DataTableModule } from 'primeng/datatable';
-
+import {GMapModule} from 'primeng/gmap';
+import { ChartModule } from 'primeng/chart';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +43,9 @@ import { DataTableModule } from 'primeng/datatable';
     TooltipModule,
     DataListModule,
     DialogModule,
-    DataTableModule
+    DataTableModule,
+    GMapModule,
+    ChartModule
   ],
   declarations: [],
   exports: [
@@ -64,7 +67,9 @@ import { DataTableModule } from 'primeng/datatable';
     TooltipModule,
     DataListModule,
     DialogModule,
-    DataTableModule
+    DataTableModule,
+    GMapModule,
+    ChartModule
   ]
 })
 export class PrimengModule {}

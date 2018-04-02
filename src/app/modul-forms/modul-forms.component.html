@@ -1,154 +1,143 @@
-<p-tabView class=" ">
+<p-tabView class="">
 
     <!-- ORDER FORM -->
     <p-tabPanel header="Order" rightIcon="fa-cart-arrow-down">
         <div class="container-fluid">
-            <div class="container ui-card-header">
-                <div class="row">
-                    <i class="fa fa-shopping-cart col-1"></i>
+            <div class="col-12 ui-card-header">
+                <div class="row offset-2">
+                    <i class="fa fa-shopping-cart icon__header"></i>
                     <h3 class="col-5 ui-card-title">Order food...lots of food</h3>
                 </div>
             </div>
-            <form class="form__box col-12 row" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)">
-                <div class="col-6">
-                    <div class="col-12">
-                        <p-radioButton class="radio" *ngFor="let dish of dishes" [value]="dish.name" [label]="dish.name" name="dishN" formControlName="dishType">
-                        </p-radioButton>
-                    </div>
-                    <!-- delivery type -->
-                    <h4 class="container" *ngIf="orderForm.controls.dishType.value !== ''">Delivery type:</h4>
-                    <div class="container-fluid" *ngIf="orderForm.controls.dishType.value !== ''">
-                        <!-- list delivery -->
-                        <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection" ></p-dropdown>
+            <form class="form__box col-12" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="col-12">
+                            <p-radioButton class="radio" *ngFor="let dish of dishes" [value]="dish.name" [label]="dish.name" name="dishN" formControlName="dishType">
+                            </p-radioButton>
+                        </div>
+                        <!-- delivery type -->
+                        <h4 class="container" *ngIf="orderForm.controls.dishType.value !== ''">Delivery type:</h4>
+                        <div class="container-fluid" *ngIf="orderForm.controls.dishType.value !== ''">
+                            <!-- list delivery -->
+                            <p-dropdown name="delivery" formControlName="deliveryType" [options]="typeOfCollection"></p-dropdown>
 
-                        <!-- Calendar -->
-                        <div class="row" *ngIf="orderForm.controls.deliveryType.value !== 'i pick it up'">
+                            <!-- Calendar -->
+                            <div class="row" *ngIf="orderForm.controls.deliveryType.value !== 'i pick it up'">
 
-                            <h3 class="col-7">Delivery date:</h3>
-                            <p-calendar class="col-7" name="calendar" formControlName="deliveryDate" dateFormat="dd.mm.yy" [minDate]="deliveryDetails.minDateValue"
-                                [defaultDate]="deliveryDetails.minDateValue" [showIcon]="true" [showButtonBar]="true"></p-calendar>
-                            <div class="container" formGroupName="deliveryPlace">
-                                <!-- Address -->
-                                <h4>Adress:</h4>
-                                <span class="ui-float-label">
-                                    <input id="float-input-city" formControlName="city" type="text" pInputText>
-                                    <label for="float-input-city">City</label>
-                                    <p-message *ngIf="orderForm.controls.deliveryPlace.controls.city.touched === true && orderForm.controls.deliveryPlace.controls.city.invalid === true "
-                                        severity="error" text="Wpisz min 3 znaki"></p-message>
-                                </span>
-                                <div>
-
+                                <h3 class="col-7">Delivery date:</h3>
+                                <p-calendar class="col-7" name="calendar" formControlName="deliveryDate" dateFormat="dd.mm.yy" [minDate]="deliveryDetails.minDateValue"
+                                    [defaultDate]="deliveryDetails.minDateValue" [showIcon]="true" [showButtonBar]="true"></p-calendar>
+                                <div class="container" formGroupName="deliveryPlace">
+                                    <!-- Address -->
+                                    <h4>Adress:</h4>
                                     <span class="ui-float-label">
-                                        <input id="float-input" formControlName="street" type="text" pInputText>
-                                        <label for="float-input">Street name</label>
-                                        <p-message *ngIf="orderForm.controls.deliveryPlace.controls.street.touched === true && orderForm.controls.deliveryPlace.controls.street.invalid === true "
+                                        <input id="float-input-city" formControlName="city" type="text" pInputText>
+                                        <label for="float-input-city">City</label>
+                                        <p-message *ngIf="orderForm.controls.deliveryPlace.controls.city.touched === true && orderForm.controls.deliveryPlace.controls.city.invalid === true "
                                             severity="error" text="Wpisz min 3 znaki"></p-message>
                                     </span>
-                                </div>
+                                    <div>
 
-                                <span class="ui-float-label">
-                                    <p-inputMask formControlName="postCode" mask="99-9999"></p-inputMask>
-                                    <label for="float-input">Postcode</label>
-                                    <p-message *ngIf="orderForm.controls.deliveryPlace.controls.postCode.touched === true && orderForm.controls.deliveryPlace.controls.postCode.invalid === true "
-                                        severity="error" text="Pole wymagane"></p-message>
-                                </span>
-                                <span class="ui-float-label">
-                                    <input id="float-input" type="text" formControlName="number" pInputText>
-                                    <label for="float-input">number</label>
-                                    <p-message *ngIf="orderForm.controls.deliveryPlace.controls.number.touched === true && orderForm.controls.deliveryPlace.controls.number.invalid === true "
-                                        severity="error" text="Pole wymagane"></p-message>
-                                </span>
+                                        <span class="ui-float-label">
+                                            <input id="float-input" formControlName="street" type="text" pInputText>
+                                            <label for="float-input">Street name</label>
+                                            <p-message *ngIf="orderForm.controls.deliveryPlace.controls.street.touched === true && orderForm.controls.deliveryPlace.controls.street.invalid === true "
+                                                severity="error" text="Wpisz min 3 znaki"></p-message>
+                                        </span>
+                                    </div>
+
+                                    <span class="ui-float-label">
+                                        <p-inputMask formControlName="postCode" mask="99-9999"></p-inputMask>
+                                        <label for="float-input">Postcode</label>
+                                        <p-message *ngIf="orderForm.controls.deliveryPlace.controls.postCode.touched === true && orderForm.controls.deliveryPlace.controls.postCode.invalid === true "
+                                            severity="error" text="Pole wymagane"></p-message>
+                                    </span>
+                                    <span class="ui-float-label">
+                                        <input id="float-input" type="text" formControlName="number" pInputText>
+                                        <label for="float-input">number</label>
+                                        <p-message *ngIf="orderForm.controls.deliveryPlace.controls.number.touched === true && orderForm.controls.deliveryPlace.controls.number.invalid === true "
+                                            severity="error" text="Pole wymagane"></p-message>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!-- TYPE OF DISHES -->
-                    <div class=" col-12 ">
-                        <span *ngFor="let dish of dishes">
-                            <p-dropdown *ngIf="orderForm.controls.dishType.value == dish.name" [name]="dish.name" [options]="dish.types" formControlName="typeDish"
-                                placeholder="Select type"></p-dropdown>
-                        </span>
-                    </div>
-                    <!-- dish extras -->
-                    <div class="col-12" *ngIf="orderForm.controls.dishType.value !== ''">
-                        <p class="col-12">Extras:</p>
-
-
-                        <div class="row row__exctras" dish="dish" *ngFor="let type of extrats" formGroupName="{{type.label}}">
-
-                            <p-checkbox class="col-5" [label]="type.label" [value]="type.label" formControlName="check" binary="true" #checkbox></p-checkbox>
-                            <p-spinner class="col-5" *ngIf="checkbox.checked" formControlName="count" [min]="1" [max]="100"></p-spinner>
-
+                    <div class="col-5">
+                        <!-- TYPE OF DISHES -->
+                        <div class=" col-12 ">
+                            <span *ngFor="let dish of dishes">
+                                <p-dropdown *ngIf="orderForm.controls.dishType.value == dish.name" [name]="dish.name" [options]="dish.types" formControlName="typeDish"
+                                    placeholder="Select type"></p-dropdown>
+                            </span>
                         </div>
+                        <!-- dish extras -->
+                        <div class="col-12">
+                            <h4 class="col-12">Extras:</h4>
+                            <div class="row row__exctras" dish="dish" *ngFor="let type of extrats" formGroupName="{{type.label}}">
+                                <p-checkbox class="col-5" [label]="type.label" [value]="type.label" formControlName="check" binary="true" #checkbox></p-checkbox>
+                                <p-spinner class="col-5" *ngIf="checkbox.checked" formControlName="count" [min]="1" [max]="100"></p-spinner>
+
+                            </div>
+                        </div>
+
                     </div>
                     <!-- BUTTONS -->
-                    <div class="col-12 ui-card-footer">
-                        <div class="row align-items-end justify-content-center" *ngIf="orderForm.controls.dishType.value !== ''">
-                            <button class=" col-5 offset-7 ui-button-danger" pButton type="button" label="Clear" (click)="clearForm()" pTooltip="Clear your order"
-                                tooltipPosition="top"></button>
-
-                        </div>
-                        <div class="row ">
-
-                            <button class=" col-5 offset-7 ui-button-success" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid"
-                                pTooltip="send your order" tooltipPosition="bottom"  ></button>
-
-                        </div>
+                    <div class="row offset-10">
+                        <button *ngIf="orderForm.controls.dishType.value !== ''" class=" col-8 ui-button-danger" pButton type="button" label="Clear"
+                            (click)="clearForm()" pTooltip="Clear your order" tooltipPosition="top"></button>
+                        <button class=" col-8  ui-button-success order__button" pButton type="submit" label="Order & Pay" [disabled]="!orderForm.valid"
+                            pTooltip="send your order" tooltipPosition="bottom"></button>
                     </div>
                 </div>
             </form>
-            <div class="box-valid ui-g-row">
-                <h3 class="ui-g-6">Debugowanie formularza</h3>
-                {{diagnostic}}
-                <app-order-table  class="ui-g-12" [orders]="orders"></app-order-table>
+            <!-- <div>{{diagnostic}}</div> -->
+            <app-order-table class="ui-g-12" [orders]="orders"></app-order-table>
 
-            </div>
         </div>
     </p-tabPanel>
     <!-- SIGN IN -->
     <p-tabPanel header="Sign In" rightIcon="fas fa-address-book">
         <div class="container-fluid">
-            <p-card>
-                <p-header class="ui-card-header">
-                    <h4 class="offset-1">Sign up Form</h4>
-                </p-header>
-                <form novalidate class="container">
-                    <div class="ui-inputgroup row">
-                        <span class="ui-float-label col-5">
-                            <input id="float-input" type="text" pInputText>
-                            <label for="float-input">First Name</label>
-                        </span>
-                        <span class="ui-float-label col-5">
-                            <input id="float-input" type="text" pInputText>
-                            <label for="float-input">Last Name</label>
-                        </span>
-                    </div>
-                    <!-- email phone -->
-                    <div class="ui-inputgroup row">
-                        <span class="ui-float-label col-5">
-                            <input class="col-12" id="float-input" type="text" pInputText>
-                            <label for="float-input">Email</label>
-                        </span>
-                        <span class="ui-float-label col-5">
-                            <input class="col-12" id="float-input" type="text" pInputText>
-                            <label for="float-input">Phone</label>
-                        </span>
-                    </div>
-                    <div class="ui-inputgroup row">
-                        <span class="ui-float-label col-5">
-                            <input class="col-12" id="float-input" type="text" pInputText>
-                            <label for="float-input">Organizations</label>
-                        </span>
-
-                    </div>
-                    <div class="ui-inputgroup row"></div>
-                    <div class="ui-inputgroup row"></div>
-                </form>
-            </p-card>
+            <div class="col-12 ui-card-header">
+                <div class="row offset-2">
+                    <i class="fa fa-key icon__header"></i>
+                    <h3 class="col-5 ui-card-title">Sign up Form</h3>
+                </div>
+            </div>
+            <form novalidate class="form__box col-12">
+                <div class="row">
+                    <span class="ui-float-label col-5">
+                        <input id="float-input" type="text" pInputText>
+                        <label for="float-input">First Name</label>
+                    </span>
+                    <span class="ui-float-label col-5">
+                        <input id="float-input" type="text" pInputText>
+                        <label for="float-input">Last Name</label>
+                    </span>
+                </div>
+                <!-- email phone -->
+                <div class="row">
+                    <span class="ui-float-label col-5">
+                        <input class="col-12" id="float-input" type="text" pInputText>
+                        <label for="float-input">Email</label>
+                    </span>
+                    <span class="ui-float-label col-5">
+                        <input class="col-12" id="float-input" type="text" pInputText>
+                        <label for="float-input">Phone</label>
+                    </span>
+                    
+                </div>
+                <div class="row">
+                    <!-- <input pPassword type="password" /> -->
+                </div>
+                <div class=" row">
+                    <button pButton type="button ui-button-success" class="btn_signin" label="Sign In"></button>
+                </div>
+                <div class=" row"></div>
+            </form>
         </div>
     </p-tabPanel>
-
-    <p-tabPanel header="posts " rightIcon="fas fa-edit">
-    </p-tabPanel>
+    <!-- <p-tabPanel header="posts " rightIcon="fas fa-edit">
+    </p-tabPanel> -->
 </p-tabView>

@@ -20,8 +20,7 @@ export class ModulFormsComponent implements OnInit {
   dishes: Array<any>;
   order: any = {};
 
-@Output()
-  orders: Array<any> = [];
+  @Output() orders: Array<any> = [];
 
   deliveryType: String = '';
   deliveryDetails: any;
@@ -49,13 +48,15 @@ export class ModulFormsComponent implements OnInit {
 
   onSubmit(form) {
     this.order = form;
-    this.orders.push(this.order)
+    this.order.extrats = [form.Sake, form.Coke, form.Ketchup, form.Juice, form.Water];
+    this.orders.push(this.order);
     console.log(this.orders);
+    this.clearForm();
   }
   clearForm() {
     this.orderForm.reset({
       dishType: '',
-      deliveryType: { id: 1, name: 'i pick it up' }
+      deliveryType: 'i pick it up'
     });
   }
   generateorderForm() {
@@ -99,9 +100,7 @@ export class ModulFormsComponent implements OnInit {
       this.orderForm.get('typeDish').reset();
       console.log(val);
     });
-    this.orderForm.get('typeDish').valueChanges.subscribe(obj => {
-      console.log(obj);
-    });
+    this.orderForm.get('typeDish').valueChanges.subscribe(obj => {});
 
     this.orderForm.get('deliveryType').valueChanges.subscribe(val => {
       const city = this.orderForm.get('deliveryPlace').get('city'),
@@ -157,8 +156,6 @@ export class ModulFormsComponent implements OnInit {
       .get(text)
       .get('check')
       .valueChanges.subscribe(val => {
-        console.log(val);
-
         const count = parent.get('count');
         if (val === true) {
           count.enable();

@@ -9,22 +9,23 @@ p-tabPanel {
   font-weight: 300;
   text-transform: initial;
 }
+.icon__header{
+    font-size:25px;
+}
+/* dishType */
 p-radioButton {
   margin-right: 10px;
 }
-div.ui-tabview-panels {
-  border: 10px solid grey;
-  height:500px;
-}
-.ui-grid-responsive{
-    padding:10px;
-}
+
 
 .form__box{
     padding:20px;
+    margin:10px auto;
+    max-width:1000px;
+    min-height:200px;
     height:auto;
     /* flex:2; */
-    border:1px solid black;
+    border:1px solid lightgrey;
 }
 .box-valid{
     /* padding:10px;
@@ -41,17 +42,26 @@ div.ui-tabview-panels {
     flex-direction: row;
     justify-content: flex-start;
 }
+.btn_signin{
+    margin-left:15px;
+}
 .ui-card-header h3 {
 margin:0;
 }
 .row__exctras{
     height:30px;
 }
-p-message /deep/  .ui-message-text{
-font-size:10px;
+.order__button{
+    margin-top:10px
 }
-p-message /deep/ .ui-message{
-    
+button {
+    padding:5px;
+}
+/* info error valid */
+p-message /deep/  .ui-message-text{
+font-size:12px;
+}
+p-message /deep/ .ui-message{  
 padding: 5px;
 position:absolute;
 top:0;

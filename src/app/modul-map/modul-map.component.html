@@ -1,3 +1,35 @@
-<p>
-  modul-map works!
-</p>
+<div class="col-12">
+    <div class="col-6">
+        <p>Name:
+            <span class="display-1">
+                <b>{{activeDistrict.NAZWA}}</b>
+            </span>
+        </p>
+        <p>Area:
+            <span class="display-1">
+                <b *ngIf="activeDistrict.SHAPE_AREA!= NaN">{{(activeDistrict.SHAPE_AREA/1000000).toFixed(2)}}</b> ha
+            </span>
+        </p>
+        <p>Length:
+            <span class="display-1">
+                <b *ngIf="activeDistrict.SHAPE_LEN!= NaN">{{(activeDistrict.SHAPE_LEN/100).toFixed(2)}}</b> km
+            </span>
+        </p>
+        <p>Population on km
+            <sup>2</sup>:
+            <span class="display-1">
+                <b>{{activeDistrict.LUD_NA_KM2}}</b>
+            </span>
+        </p>
+        <!-- <p>Dane statystyczne po kliknięciu na obręb</p> -->
+    </div>
+    <p-gmap class="col-6" *ngIf="mapData" [options]="mapPoint" [style]="{'width': '100%','height':'520px'}" (onMapReady)="initMap($event)"></p-gmap>
+</div>
+
+<p-dialog header="{{activeDistrict.NAZWA}}" [(visible)]="display" [responsive]="true" [dismissableMask]="true" [width]="800" [minWidth]="200">
+    <p-chart *ngIf="display" type="bar" width="1200px" height="400px" [data]="data"></p-chart>
+</p-dialog>
+
+<button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
+
+

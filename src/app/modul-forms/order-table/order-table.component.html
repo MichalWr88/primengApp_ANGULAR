@@ -2,8 +2,8 @@
 <p-dataTable [value]="orders" lazy="true" [immutable]=false>
     <p-header>List of Orders</p-header>
     <p-column field="dishType" header="Dish"></p-column>
-    <p-column field="type" header="Type"></p-column>
-    <p-column field="delivery.type" header="Delivery"></p-column>
-    <p-column field="extras.type" header="Extras"></p-column>
+    <p-column field="typeDish.name" header="Type"></p-column>
+    <p-column field="deliveryType" header="Delivery"></p-column>
+    <p-column field="['s','d']" header="Extras"></p-column>
 </p-dataTable>
-{{orders | json}}
+<!-- {{orders | json}} -->
