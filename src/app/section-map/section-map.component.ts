@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 // import * as data from '../osiedla_207.geojson';
 declare const google: any;
 @Component({
-  selector: 'app-modul-map',
-  templateUrl: './modul-map.component.html',
-  styleUrls: ['./modul-map.component.css']
+  selector: 'app-section-map',
+  templateUrl: './section-map.component.html',
+  styleUrls: ['./section-map.component.css']
 })
-export class ModulMapComponent implements OnInit {
+export class SectionMapComponent implements OnInit {
   options: any;
   district = 'assets/osiedla_207.geojson';
   mapData;
   map;
-  display: boolean = false;
+  display: Boolean = false;
   data;
   overlays: any[];
   mapPoint = {
@@ -77,21 +77,26 @@ export class ModulMapComponent implements OnInit {
     return this.http.get(url);
   }
   showDialog(obj) {
-    console.log(obj);
+    // console.log(obj);
     // for (var property  in obj) {
     //   console.log(prop);
     // }
     const keyNames = Object.keys(obj);
     console.log(keyNames);
+    // console.log(this.data.datasets[0].data);
+    this.data.datasets[0].data = [];
+    let data = [];
 
+    // tslint:disable-next-line:forin
     for (const prop in obj) {
-      if (prop == 'W0_2') {
-          this.data.datatset.push(obj[prop]);
-        break;
+      if (prop === 'W0_2') {
+        data.push(obj[prop]);
+      } else if (prop === 'W3_6') {
+        data.push(obj[prop]);
       }
-
-
     }
+    this.data.datasets[0].data = data;
+console.log(this.data.datasets[0].data);
 
     this.display = true;
   }

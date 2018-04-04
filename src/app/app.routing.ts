@@ -7,9 +7,9 @@ import {
 import 'rxjs/add/operator/switchMap';
 
 import { ModulFormsComponent } from './modul-forms/modul-forms.component';
-import { ModulHomeComponent } from './modul-home/modul-home.component';
+import { SectionHomeComponent } from './section-home/section-home.component';
 import {ModulDataComponent} from './modul-data/modul-data.component';
-import {ModulMapComponent} from './modul-map/modul-map.component';
+import {SectionMapComponent} from './section-map/section-map.component';
 
 import { ModulChartsComponent } from './modul-charts/modul-charts.component';
 
@@ -17,8 +17,8 @@ import { ModulChartsComponent } from './modul-charts/modul-charts.component';
 const routesConfig: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'forms', component: ModulFormsComponent },
-  { path: 'home', component: ModulHomeComponent },
-  { path: 'maps', component: ModulMapComponent },
+  { path: 'home', component: SectionHomeComponent },
+  { path: 'maps', component: SectionMapComponent },
   { path: 'charts', component: ModulChartsComponent },
   { path: 'data', component: ModulDataComponent },
   { path: '**', redirectTo: 'home' }

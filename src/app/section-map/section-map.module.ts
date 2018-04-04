@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModulMapComponent } from './modul-map.component';
+import { SectionMapComponent } from './section-map.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +14,6 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserModule,
     FormsModule
   ],
-  declarations: [ModulMapComponent]
+  declarations: [SectionMapComponent]
 })
 export class ModulMapModule {}
